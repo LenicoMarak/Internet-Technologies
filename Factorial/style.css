@@ -1,0 +1,9 @@
+ .box{
+     text-align: center;
+     margin-top: 50%;
+  }
+  .box button{
+      background-color: #c233ff;
+      border-radius: 4px;
+      color: white;
+ }

@@ -1,0 +1,22 @@
+body{
+  text-align: center;
+}
+#output{
+  position: absolute;
+  top: 40%;
+}
+.box{
+  margin-top: 100px;
+}
+#btn{
+  height: 40px;
+  width: 150px;
+  border: none;
+  background-color: chocolate;
+  border-radius: 10px;
+  color: white;
+  margin-top: 50px;
+}
+#btn:active{
+  background-color: dimgrey;
+}

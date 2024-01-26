@@ -1,0 +1,16 @@
+*{
+  background-color: #1c1c1d;
+  color: white;
+}
+#prompt{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 50%;
+}
+#prompt button{
+  background-color: #08a23f;
+  border: none;
+  border-radius: 5px;
+}
