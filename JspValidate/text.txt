@@ -1,0 +1,33 @@
+chatRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists() && snapshot.hasChildren()){
+                    for(DataSnapshot data:snapshot.getChildren()){
+                        Chat chat=snapshot.getValue(Chat.class);
+                        if(chat!=null && chat.getReciver()!=null && chat.getSender()!=null){
+                            if(chat.getReciver().equals(fUser.getUid())){
+                                int pos=getPositionById(chat.getSender());
+                                if(checkUser(chat.getSender())){
+                                    queryAndAdd(chat.getSender());
+                                    DatabaseChatListHelper.getInstance(getApplicationContext()).addToCache(chat.getSender());
+                                }
+                                RecyclerView.ViewHolder viewHolder = recyclerView.findViewHolderForAdapterPosition(pos);
+                                if (viewHolder != null && !chat.isSeen()) {
+                                    TextView indicator = viewHolder.itemView.findViewById(R.id.indicator);
+                                    if (indicator.getVisibility() == View.GONE) {
+                                        indicator.setText("1");
+                                        indicator.setVisibility(View.VISIBLE);
+                                        userAdapter.notifyItemChanged(pos);
+                                    } else if (indicator.getVisibility() == View.VISIBLE) {
+                                        String count = indicator.getText().toString();
+                                        int parsedCount = Integer.parseInt(count);
+                                        parsedCount++;
+                                        indicator.setText(String.valueOf(parsedCount));
+                                        userAdapter.notifyItemChanged(pos);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
